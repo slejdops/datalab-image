@@ -4,5 +4,5 @@ jupyter labextension install @jupyter-widgets/jupyterlab-manager \
                              @jupyterlab/hub-extension \
                              @pyviz/jupyterlab_pyviz \
                              dask-labextension
-
+echo "export PATH=$(pwd)/binder/deps/conda/bin:/home/jovan:$PATH" >> /home/jovan/.bashrc
 #EOF
