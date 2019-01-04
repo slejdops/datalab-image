@@ -2,7 +2,7 @@
 
 export DASK_KUBERNETES__WORKER_TEMPLATE_PATH=${PWD}/.dask/config.yaml
 export DASK_KUBERNETES__WORKER_NAME=dask-{JUPYTERHUB_USER}-{uuid}
-
+echo $PATH
 
 # set worker image url in worker template
 if [[ -z "${JUPYTER_IMAGE_SPEC}" ]]; then
