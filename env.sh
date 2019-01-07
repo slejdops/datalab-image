@@ -1,5 +1,7 @@
 #!/bin/bash
 
+
+echo "export PATH=$(pwd)/binder/deps/conda/bin:/home/jovan:$PATH" >> /home/jovan/.bashrc
 # add miniconda to the path
 export PATH=$(pwd)/binder/deps/conda/bin:$PATH
 
