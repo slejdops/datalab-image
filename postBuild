@@ -1,12 +1,8 @@
 #!/bin/bash
-
-updatedb --output=$HOME/.locate.db
-echo "export PATH=$(pwd)/binder/deps/conda/bin:/home/jovyan:$PATH" >> /root/.bashrc
-echo "export PATH=$(pwd)/binder/deps/conda/bin:/home/jovyan:$PATH" >> /home/jovyan/.bashrc
-
 jupyter serverextension enable --py nbserverproxy --sys-prefix
 jupyter labextension install @jupyter-widgets/jupyterlab-manager \
                              @jupyterlab/hub-extension \
                              @pyviz/jupyterlab_pyviz \
                              dask-labextension
+
 #EOF
