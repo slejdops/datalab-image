@@ -1,4 +1,4 @@
 #!/bin/bash
 
-rm /tmp/start_script
+
 echo "Start scrit has run" > /tmp/start_script
