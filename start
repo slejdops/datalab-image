@@ -1,4 +1,7 @@
 #!/bin/bash
 
 
+
+
 echo "Start script has run" > /tmp/start_script
+exec "$@"
