@@ -1,6 +1,6 @@
 #!/bin/bash
 
-
+echo "Start script is running run" 
 
 
 echo "Start script has run" > /tmp/start_script
