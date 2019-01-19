@@ -1,6 +1,6 @@
 #!/bin/env bash
 
-echo "Start script is running ....." 
+echo "Start script is running ....."
 
 
 echo "Start script has run" > /tmp/start_script
