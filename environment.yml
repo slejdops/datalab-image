@@ -93,8 +93,8 @@ dependencies:
   - tini=0.18.0
   - pip:
     # version discrepancy for pysam on bioconda, install from pypi to be sure
-    - pysam==0.15.1
-    - pysamstats==1.1.2
+    - pysam
+    - pysamstats
     # not on conda-forge
     - anhima==0.11.2
     # not on conda-forge
