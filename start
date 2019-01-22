@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Start script is running ....."
+echo "Start script is running ........"
 
 export DASK_KUBERNETES__WORKER_TEMPLATE_PATH=${PWD}/config.yaml
 export DASK_KUBERNETES__WORKER_NAME=dask-{JUPYTERHUB_USER}-{uuid}
