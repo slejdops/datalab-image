@@ -1,0 +1,28 @@
+jupyterhub==1.0.0
+dask_labextension
+# version discrepancy for pysam on bioconda, install from pypi to be sure
+ pysam
+# pysamstats
+# not on conda-forge
+ anhima==0.11.2
+# not on conda-forge
+ prettypandas==0.0.4
+# version not on conda-forge
+ graphviz==0.10.1
+# not build for Python 3.6 on conda-forge
+ petlx==1.0.3
+# not on conda-forge
+ scikits.bootstrap==1.0.0-pypi2
+# others
+ Sphinx==1.8.2
+ sphinx-autobuild==0.7.1
+ sphinx-bootstrap-theme==0.6.5
+# others from pangeo
+ fusepy==3.0.1
+ click==7.0
+ jedi==0.13.2
+ kubernetes==8.0.0
+ dask-kubernetes==0.6.0
+ nbserverproxy==0.8.8
+# pre-release zarr, to get consolidated metadata feature
+ git+https://github.com/zarr-developers/zarr@2c1a6e09f729547d87a9f5b3fb5592706e01e64d

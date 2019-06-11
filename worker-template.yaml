@@ -1,0 +1,44 @@
+metadata:
+spec:
+  tolerations:
+   - key: "preemptible"
+     operator: "Equal"
+     value: "true"
+     effect: "NoSchedule"
+  affinity:
+    nodeAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+      - weight: 1
+        preference:
+          matchExpressions:
+          - key: cloud.google.com/gke-preemptible
+            operator: In
+            values:
+            - "true"
+  restartPolicy: Never
+  containers:
+  - args:
+      - dask-worker
+      - --nthreads
+      - '2'
+      - --no-bokeh
+      - --memory-limit
+      - 6GB
+      - --death-timeout
+      - '60'
+    image: malariagen/jupyter-notebook:1.0.4
+    name: dask-worker
+    securityContext:
+      capabilities:
+        add: [SYS_ADMIN]
+      privileged: true
+    env:
+      - name: GCSFUSE_BUCKET
+        value: ag1000g-release
+    resources:
+      limits:
+        cpu: "1.75"
+        memory: 6G
+      requests:
+        cpu: "1.75"
+        memory: 6G
