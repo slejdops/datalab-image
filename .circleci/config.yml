@@ -18,5 +18,5 @@ jobs:
           name: Build and push Docker image
           command: |
             docker build -t malariagen/datalab:$TAG .
-            echo $DOCKER_PWD | docker login -u $DOCKER_LOGIN --password-stdin
+            echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
             docker push malariagen/datalab:$TAG
