@@ -11,8 +11,7 @@ RUN conda config --set ssl_verify no
 COPY conda.txt /conda.txt
 COPY pip.txt /pip.txt
 
-ARG buildtime_variable=default_value
-ENV env_var_name=$TAG
+
 
 RUN conda config --add channels conda-forge
 RUN conda config --add channels pyviz/label/dev
