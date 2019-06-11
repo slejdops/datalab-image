@@ -13,7 +13,10 @@ COPY pip.txt /pip.txt
 
 ARG tag
 RUN echo "image tag is $tag"
-#ENV IMAGETAG=$
+ENV IMAGETAG=$tag
+
+RUN "echo ---------------------------------- "
+RUN "env variable IMAGETAG is ${IMAGETAG}"
 
 RUN conda config --add channels conda-forge
 RUN conda config --add channels pyviz/label/dev
