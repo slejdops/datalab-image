@@ -11,7 +11,8 @@ RUN conda config --set ssl_verify no
 COPY conda.txt /conda.txt
 COPY pip.txt /pip.txt
 
-
+ARG IMAGETAG=default_value
+ENV IMAGETAG=$IMAGETAG
 
 RUN conda config --add channels conda-forge
 RUN conda config --add channels pyviz/label/dev
