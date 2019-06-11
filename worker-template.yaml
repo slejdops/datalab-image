@@ -26,7 +26,7 @@ spec:
       - 6GB
       - --death-timeout
       - '60'
-    image: malariagen/jupyter-notebook:1.0.4
+    image: malariagen/datalab:${IMAGETAG}
     name: dask-worker
     securityContext:
       capabilities:
