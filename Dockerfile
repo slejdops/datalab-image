@@ -10,7 +10,7 @@ USER $NB_USER
 RUN conda config --set ssl_verify no
 #COPY conda.txt /conda.txt
 #COPY pip.txt /pip.txt
-COPY binder/environment.yml /environment.yml
+COPY environment.yml /environment.yml
 
 ARG tag
 RUN echo "image tag is $tag"
