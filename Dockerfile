@@ -56,13 +56,15 @@ RUN conda env update --name malariagen --file /tmp/environment.yml --prune
 #RUN pip install --upgrade pip
 
 #RUN pip install -r /pip.txt
+RUN nbserverproxy==0.8.8
+RUN jupyter serverextension enable --py nbserverproxy --sys-prefix
 
 RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager \
                                  @jupyterlab/hub-extension \
                                  @pyviz/jupyterlab_pyviz
-#RUN jupyter labextension install dask-labextension
 
-RUN jupyter serverextension enable --py nbserverproxy --sys-prefix
+
+
 
 USER root
 COPY prepare.sh /usr/bin/prepare.sh
