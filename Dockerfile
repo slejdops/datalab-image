@@ -28,7 +28,7 @@ RUN conda config --add channels conda-forge
 RUN    conda update --yes conda
 
     # create default scientific Python environment
-RUN    conda create --yes --name=base python=3.6
+RUN    conda create --yes --name=malariagen python=3.6
 
 RUN conda config --add channels pyviz/label/dev
 RUN conda config --add channels bokeh/label/dev
@@ -37,7 +37,7 @@ RUN conda config --add channels bioconda
 RUN conda config --add channels conda-forge
 RUN conda update --yes conda
 
-RUN conda env update --name base --file binder/environment.yml --prune
+RUN conda env update --name malariagen --file binder/environment.yml --prune
 #RUN conda install --yes  \
 #    -c pyviz/label/dev \
 #    -c bokeh/channel/dev \
