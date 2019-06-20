@@ -19,7 +19,7 @@ jobs:
           command: |
             docker build --build-arg tag=$TAG  -t malariagen/datalab-dev:$TAG .
             echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
-            docker push malariagen/datalab:$TAG
+            docker push malariagen/datalab-dev:$TAG
 workflows:
       version: 2
       build-master:
