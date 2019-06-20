@@ -38,7 +38,7 @@ RUN conda config --add channels bioconda
 RUN conda config --add channels conda-forge
 RUN conda update --yes conda
 
-RUN conda env update --name malariagen --file /environment.yml --prune
+RUN conda env update --name malariagen --file /environment.yml 
 #RUN conda install --yes  \
 #    -c pyviz/label/dev \
 #    -c bokeh/channel/dev \
