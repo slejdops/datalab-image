@@ -10,6 +10,7 @@ USER $NB_USER
 RUN conda config --set ssl_verify no
 #COPY conda.txt /conda.txt
 #COPY pip.txt /pip.txt
+COPY binder/environment.yml /environment.yml
 
 ARG tag
 RUN echo "image tag is $tag"
@@ -37,7 +38,7 @@ RUN conda config --add channels bioconda
 RUN conda config --add channels conda-forge
 RUN conda update --yes conda
 
-RUN conda env update --name malariagen --file binder/environment.yml --prune
+RUN conda env update --name malariagen --file /environment.yml --prune
 #RUN conda install --yes  \
 #    -c pyviz/label/dev \
 #    -c bokeh/channel/dev \
