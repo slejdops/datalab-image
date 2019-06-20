@@ -19,11 +19,7 @@ ENV IMAGETAG=$tag
 RUN echo " ---------------------------------- "
 RUN echo "env variable IMAGETAG is ${IMAGETAG}"
 
-#RUN conda config --add channels conda-forge
-#RUN conda config --add channels pyviz/label/dev
-#RUN conda config --add channels bokeh/label/dev
-#RUN conda config --add channels intake
-#RUN conda config --add channels bioconda
+
 
 RUN conda config --add channels conda-forge
 RUN    conda update --yes conda
@@ -39,19 +35,12 @@ RUN conda config --add channels conda-forge
 RUN conda update --yes conda
 
 RUN conda env update --name malariagen --file /tmp/environment.yml --prune
-#RUN conda install --yes  \
-#    -c pyviz/label/dev \
-#    -c bokeh/channel/dev \
-#    -c intake \
-#    -c conda-forge \
-#    -c bioconda \
-#    --file /conda.txt \
-#    && conda clean -afy \
-#    && find /opt/conda/ -follow -type f -name '*.a' -delete \
-#    && find /opt/conda/ -follow -type f -name '*.pyc' -delete \
-#    && find /opt/conda/ -follow -type f -name '*.js.map' -delete \
-#    && find /opt/conda/lib/python*/site-packages/bokeh/server/static -follow -type f -name '*.js' ! -name '*.min.js' -delete
-#
+RUN conda clean -afy \
+    && find /opt/conda/ -follow -type f -name '*.a' -delete \
+    && find /opt/conda/ -follow -type f -name '*.pyc' -delete \
+    && find /opt/conda/ -follow -type f -name '*.js.map' -delete \
+    && find /opt/conda/lib/python*/site-packages/bokeh/server/static -follow -type f -name '*.js' ! -name '*.min.js' -delete
+
 
 #RUN pip install --upgrade pip
 
