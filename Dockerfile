@@ -60,7 +60,7 @@ RUN conda env update --name malariagen --file /tmp/environment.yml --prune
 RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager \
                                  @jupyterlab/hub-extension \
                                  @pyviz/jupyterlab_pyviz
-RUN jupyter labextension install dask-labextension
+#RUN jupyter labextension install dask-labextension
 
 RUN jupyter serverextension enable --py nbserverproxy --sys-prefix
 
