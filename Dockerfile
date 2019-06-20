@@ -38,13 +38,10 @@ RUN conda env update --name malariagen --file /tmp/environment.yml --prune
 RUN conda clean -afy \
     && find /opt/conda/ -follow -type f -name '*.a' -delete \
     && find /opt/conda/ -follow -type f -name '*.pyc' -delete \
-    && find /opt/conda/ -follow -type f -name '*.js.map' -delete \
-    && find /opt/conda/lib/python*/site-packages/bokeh/server/static -follow -type f -name '*.js' ! -name '*.min.js' -delete
+    && find /opt/conda/ -follow -type f -name '*.js.map' -delete 
+    
 
 
-#RUN pip install --upgrade pip
-
-#RUN pip install -r /pip.txt
 RUN pip install nbserverproxy==0.8.8
 RUN jupyter serverextension enable --py nbserverproxy --sys-prefix
 
