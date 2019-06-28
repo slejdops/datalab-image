@@ -2,7 +2,7 @@
 
 set -x
 
-echo "Copy files from pre-load directory into home"
+echo "Copy files from pre-load directory into home "
 cp --update -r -v /pre-home/. /home/jovyan
 
 if [ -e "/opt/app/environment.yml" ]; then
