@@ -32,7 +32,7 @@ RUN conda config --add channels bokeh/label/dev
 RUN conda config --add channels intake
 RUN conda config --add channels bioconda
 RUN conda config --add channels conda-forge
-RUN conda update --yes conda
+#RUN conda update --yes conda
 
 RUN conda env update --name malariagen --file /tmp/environment.yml --prune
 RUN conda clean -afy \
