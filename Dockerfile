@@ -43,11 +43,14 @@ RUN conda clean -afy \
 
 
 RUN pip install nbserverproxy==0.8.8
-RUN jupyter serverextension enable --py nbserverproxy --sys-prefix
+
 
 RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager \
                                  @jupyterlab/hub-extension \
                                  @pyviz/jupyterlab_pyviz
+RUN jupyter labextension install dask-labextension
+
+RUN jupyter serverextension enable --py nbserverproxy --sys-prefix
 
 
 
