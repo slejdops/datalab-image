@@ -42,7 +42,7 @@ RUN conda clean -afy \
     
 
 
-RUN pip install nbserverproxy==0.8.8
+RUN pip install nbserverproxy==0.8.3
 
 
 RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager \
