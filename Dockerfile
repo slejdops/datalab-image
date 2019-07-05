@@ -22,7 +22,7 @@ RUN echo "env variable IMAGETAG is ${IMAGETAG}"
 
 
 RUN conda config --add channels conda-forge
-RUN    conda update --yes conda
+#RUN    conda update --yes conda
 
     # create default scientific Python environment
 RUN    conda create --yes --name=malariagen python=3.6
