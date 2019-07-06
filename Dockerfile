@@ -21,11 +21,8 @@ RUN echo "env variable IMAGETAG is ${IMAGETAG}"
 
 
 
-RUN conda config --add channels conda-forge
-RUN    conda update --yes conda
 
     # create default scientific Python environment
-RUN    conda create --yes --name=malariagen python=3.6
 
 RUN conda config --add channels pyviz/label/dev
 RUN conda config --add channels bokeh/label/dev
@@ -34,20 +31,20 @@ RUN conda config --add channels bioconda
 RUN conda config --add channels conda-forge
 #RUN conda update --yes conda
 
-RUN conda env update --name malariagen --file /tmp/environment.yml 
-RUN conda clean -afy \
-    && find /opt/conda/ -follow -type f -name '*.a' -delete \
-    && find /opt/conda/ -follow -type f -name '*.pyc' -delete \
-    && find /opt/conda/ -follow -type f -name '*.js.map' -delete 
-    
+RUN conda env update  --file /tmp/environment.yml --prune
+RUN conda clean -afy 
+#    && find /opt/conda/ -follow -type f -name '*.a' -delete \
+#    && find /opt/conda/ -follow -type f -name '*.pyc' -delete \
+#    && find /opt/conda/ -follow -type f -name '*.js.map' -delete 
+#    
 
 
-RUN pip install nbserverproxy==0.8.3
+RUN /opt/conda/bin/pip install nbserverproxy
 
 
-RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager \
-                                 @jupyterlab/hub-extension \
-                                 @pyviz/jupyterlab_pyviz
+RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager 
+RUN jupyter labextension install @jupyterlab/hub-extension 
+RUN jupyter labextension install @pyviz/jupyterlab_pyviz
 #RUN jupyter labextension install dask-labextension
 
 RUN jupyter serverextension enable --py nbserverproxy --sys-prefix
