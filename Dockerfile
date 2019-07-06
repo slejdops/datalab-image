@@ -1,4 +1,4 @@
-FROM jupyter/base-notebook:4417b81d04b7
+FROM jupyter/base-notebook
 
 USER root
 RUN apt-get update \
