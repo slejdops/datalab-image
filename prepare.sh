@@ -27,6 +27,12 @@ if [ "$GCSFUSE_BUCKET" ]; then
     /opt/conda/bin/gcsfuse $GCSFUSE_BUCKET /gcs --background
 fi
 
+
+
+
+conda activate malariagen
+
+export PATH="/opt/conda/envs/malariagen/bin:${PATH}"
 # check if we are on Sanger internal network and datalab.malariagen.sanger.ac.uk resolves
 
 dig +timeout=1  +short @172.18.255.1 datalab.malariagen.sanger.ac.uk
@@ -40,6 +46,7 @@ then
 echo "nameserver 172.18.255.1" > /tmp/resolv.conf
 cat /etc/resolv.conf >> /tmp/resolv.conf
 sudo cp /tmp/resolv.conf /etc/resolv.conf
+
 
 else
  echo "DNS record for datalab not found"
