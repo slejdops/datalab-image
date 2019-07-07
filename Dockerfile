@@ -40,7 +40,7 @@ RUN conda clean -afy
 
 
 RUN /opt/conda/bin/pip install nbserverproxy
-RUN /opt/conda/bin/pip install nb_conda
+RUN conda  install nb_conda
 
 
 RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager 
