@@ -54,7 +54,6 @@ RUN jupyter labextension install dask-labextension
 
 RUN jupyter labextension install jupyterlab-jupytext
 RUN jupyter labextension list
-RUN jupyter nbextensions_configurator enable --user
 
 USER root
 COPY prepare.sh /usr/bin/prepare.sh
