@@ -54,16 +54,21 @@ RUN jupyter labextension install @pyviz/jupyterlab_pyviz
 RUN jupyter labextension install dask-labextension
 
 RUN jupyter labextension install jupyterlab-jupytext
+RUN jupyter lab build
 RUN jupyter labextension list
 
 USER root
 COPY prepare.sh /usr/bin/prepare.sh
 RUN chmod +x /usr/bin/prepare.sh
 RUN mkdir /home/$NB_USER/examples && chown -R $NB_USER /home/$NB_USER/examples
-RUN mkdir /pre-home && mkdir /pre-home/examples && chown -R $NB_USER /pre-home
+RUN mkdir /pre-home && mkdir /pre-home/examples 
+
+COPY conda_init /pre-home/.bashrc
+RUN chown -R $NB_USER /pre-home
 COPY examples/ /pre-home/examples/
 
 ENV DASK_CONFIG=/home/$NB_USER/config.yaml
+
 COPY config.yaml /pre-home
 COPY worker-template.yaml /pre-home
 
@@ -74,7 +79,6 @@ RUN mkdir /opt/app
 RUN echo "$NB_USER ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/notebook
 RUN sed -ri "s#Defaults\s+secure_path=\"([^\"]+)\"#Defaults secure_path=\"\1:$CONDA_DIR/bin\"#" /etc/sudoers
 USER $NB_USER
-RUN conda init bash
 
 RUN echo "conda activate $(head -1 /tmp/environment.yml | cut -d' ' -f2)" >> /pre-home/.bashrc
 ENV PATH /opt/conda/envs/$(head -1 /tmp/environment.yml | cut -d' ' -f2)/bin:$PATH
