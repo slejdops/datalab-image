@@ -40,6 +40,7 @@ RUN conda clean -afy
 
 
 RUN /opt/conda/bin/pip install nbserverproxy
+RUN /opt/conda/bin/pip install jupytext
 RUN conda  install nb_conda
 
 
@@ -73,8 +74,9 @@ RUN mkdir /opt/app
 RUN echo "$NB_USER ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/notebook
 RUN sed -ri "s#Defaults\s+secure_path=\"([^\"]+)\"#Defaults secure_path=\"\1:$CONDA_DIR/bin\"#" /etc/sudoers
 USER $NB_USER
+RUN conda init bash
 
-RUN echo "source activate $(head -1 /tmp/environment.yml | cut -d' ' -f2)" > /pre-home/.bashrc
+RUN echo "conda activate $(head -1 /tmp/environment.yml | cut -d' ' -f2)" >> /pre-home/.bashrc
 ENV PATH /opt/conda/envs/$(head -1 /tmp/environment.yml | cut -d' ' -f2)/bin:$PATH
 
 ENTRYPOINT ["tini", "--", "/usr/bin/prepare.sh"]
