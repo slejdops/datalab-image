@@ -43,16 +43,18 @@ RUN /opt/conda/bin/pip install nbserverproxy
 RUN conda  install nb_conda
 
 
-RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager 
-RUN jupyter labextension install @jupyterlab/hub-extension 
-RUN jupyter labextension install @pyviz/jupyterlab_pyviz
-#RUN jupyter labextension install jupyterlab-jupytext@0.19
-RUN jupyter labextension install dask-labextension
 
 RUN jupyter serverextension enable --py nbserverproxy --sys-prefix
 
 
+RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager 
+RUN jupyter labextension install @jupyterlab/hub-extension 
+RUN jupyter labextension install @pyviz/jupyterlab_pyviz
+RUN jupyter labextension install dask-labextension
 
+RUN jupyter labextension install jupyterlab-jupytext
+RUN jupyter labextension list
+RUN jupyter nbextensions_configurator enable --user
 
 USER root
 COPY prepare.sh /usr/bin/prepare.sh
