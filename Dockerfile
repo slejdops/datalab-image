@@ -40,9 +40,9 @@ RUN conda clean -afy
 
 
 RUN /opt/conda/bin/pip install nbserverproxy
-RUN /opt/conda/bin/pip install jupytext
+#RUN /opt/conda/bin/pip install jupytext
 RUN conda  install nb_conda
-
+RUN conda -n malariagen remove jupytext
 
 
 RUN jupyter serverextension enable --py nbserverproxy --sys-prefix
@@ -53,8 +53,8 @@ RUN jupyter labextension install @jupyterlab/hub-extension
 RUN jupyter labextension install @pyviz/jupyterlab_pyviz
 RUN jupyter labextension install dask-labextension
 
-RUN jupyter labextension install jupyterlab-jupytext
-RUN jupyter lab build
+#RUN jupyter labextension install jupyterlab-jupytext
+#RUN jupyter lab build
 RUN jupyter labextension list
 
 USER root
