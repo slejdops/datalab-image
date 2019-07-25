@@ -42,7 +42,7 @@ RUN conda clean -afy
 RUN /opt/conda/bin/pip install nbserverproxy
 #RUN /opt/conda/bin/pip install jupytext
 RUN conda  install nb_conda
-RUN conda -n malariagen remove jupytext
+RUN conda remove -n malariagen jupytext
 
 
 RUN jupyter serverextension enable --py nbserverproxy --sys-prefix
