@@ -48,21 +48,14 @@ RUN /opt/conda/bin/pip install nbserverproxy
 RUN conda  install nb_conda
 RUN conda remove -n malariagen jupytext
 
-RUN jupyter serverextension enable --py nbserverproxy --sys-prefix
-
-RUN jupyter nbextension enable --sys-prefix --py widgetsnbextension
-
-RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager 
-RUN jupyter labextension install @jupyterlab/hub-extension 
-RUN jupyter labextension install @pyviz/jupyterlab_pyviz
-RUN jupyter labextension install dask-labextension
+#RUN jupyter serverextension enable --py nbserverproxy --sys-prefix
 
 
 
 
 
 
-RUN jupyter labextension list
+
 
 USER root
 COPY prepare.sh /usr/bin/prepare.sh
@@ -89,6 +82,17 @@ USER $NB_USER
 
 RUN echo "conda activate $(head -1 /tmp/environment.yml | cut -d' ' -f2)" >> /pre-home/.bashrc
 ENV PATH /opt/conda/envs/$(head -1 /tmp/environment.yml | cut -d' ' -f2)/bin:$PATH
+USER root
+USER $NB_USER
+
+RUN jupyter nbextension enable --sys-prefix --py widgetsnbextension
+
+RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager 
+RUN jupyter labextension install @jupyterlab/hub-extension 
+RUN jupyter labextension install @pyviz/jupyterlab_pyviz
+RUN jupyter labextension install dask-labextension
+
+RUN jupyter labextension list
 
 ENTRYPOINT ["tini", "--", "/usr/bin/prepare.sh"]
 CMD ["start.sh jupyter lab"]
