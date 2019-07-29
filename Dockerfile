@@ -42,6 +42,7 @@ RUN conda install -n base -c conda-forge widgetsnbextension
 RUN conda install -n malariagen -c conda-forge ipywidgets
 
 RUN /opt/conda/bin/pip install nbserverproxy
+RUN /opt/conda/bin/pip install dask_labextension
 
 RUN conda  install nb_conda
 RUN conda remove -n malariagen jupytext
