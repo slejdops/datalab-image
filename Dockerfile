@@ -85,7 +85,9 @@ ENV PATH /opt/conda/envs/malariagen/bin:$PATH
 USER root
 USER $NB_USER
 
-RUN source activate malariagen
+RUN /bin/bash -c "source activate malariagen"
+RUN conda env list
+
 RUN jupyter nbextension enable --sys-prefix --py widgetsnbextension
 
 RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager 
