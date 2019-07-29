@@ -1,4 +1,4 @@
-FROM jupyter/base-notebook
+
 
 USER root
 RUN apt-get update \
@@ -47,12 +47,15 @@ RUN /opt/conda/bin/pip install dask_labextension
 RUN conda  install nb_conda
 RUN conda remove -n malariagen jupytext
 
+RUN jupyter serverextension enable --py nbserverproxy --sys-prefix
+
+RUN jupyter nbextension enable --sys-prefix --py widgetsnbextension
+
 RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager 
 RUN jupyter labextension install @jupyterlab/hub-extension 
 RUN jupyter labextension install @pyviz/jupyterlab_pyviz
 RUN jupyter labextension install dask-labextension
 
-RUN jupyter serverextension enable --py nbserverproxy --sys-prefix
 
 
 
