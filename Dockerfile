@@ -38,20 +38,22 @@ RUN conda clean -afy
 #    && find /opt/conda/ -follow -type f -name '*.js.map' -delete 
 #    
 
+RUN conda install -n base -c conda-forge widgetsnbextension
+RUN conda install -n malariagen -c conda-forge ipywidgets
 
 RUN /opt/conda/bin/pip install nbserverproxy
 
 RUN conda  install nb_conda
 RUN conda remove -n malariagen jupytext
 
-
-RUN jupyter serverextension enable --py nbserverproxy --sys-prefix
-
-
 RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager 
 RUN jupyter labextension install @jupyterlab/hub-extension 
 RUN jupyter labextension install @pyviz/jupyterlab_pyviz
 RUN jupyter labextension install dask-labextension
+
+RUN jupyter serverextension enable --py nbserverproxy --sys-prefix
+
+
 
 
 

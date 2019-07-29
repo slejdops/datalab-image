@@ -10,3 +10,9 @@ kubernetes:
   worker-template-path: "/home/{NB_USER}/worker-template.yaml"
   name: "dask-{JUPYTERHUB_USER}-{uuid}"
 
+labextension:
+  factory:
+    module: dask_kubernetes
+    class: KubeCluster
+    args: []
+    kwargs: {}
