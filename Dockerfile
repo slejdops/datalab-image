@@ -75,12 +75,12 @@ RUN echo "$NB_USER ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/notebook
 RUN sed -ri "s#Defaults\s+secure_path=\"([^\"]+)\"#Defaults secure_path=\"\1:$CONDA_DIR/bin\"#" /etc/sudoers
 USER $NB_USER
 
-RUN echo "conda activate malariagen" >> /pre-home/.bashrc
-ENV PATH /opt/conda/envs/malariagen/bin:$PATH
-USER root
-USER $NB_USER
-
-RUN /bin/bash -c "source activate malariagen"
+#RUN echo "conda activate base" >> /pre-home/.bashrc
+#ENV PATH /opt/conda/envs/malariagen/bin:$PATH
+#USER root
+#USER $NB_USER
+#
+#RUN /bin/bash -c "source activate malariagen"
 RUN conda env list
 
 RUN jupyter nbextension enable --sys-prefix --py widgetsnbextension
