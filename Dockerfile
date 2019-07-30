@@ -44,10 +44,13 @@ RUN conda install -n base -c conda-forge ipywidgets
 RUN conda install -n base -c conda-forge dask_labextension
 
 #RUN /opt/conda/bin/pip install nbserverproxy
+# https://github.com/dask/dask-labextension/issues/51    nbserverproxy has been replaced with jupyter-server-proxy
+
 RUN /opt/conda/bin/pip install jupyter-server-proxy
 
 RUN conda  install nb_conda
 RUN conda remove -n base jupytext
+RUN conda remove -n base nbserverproxy
 
 #RUN jupyter serverextension enable --py nbserverproxy --sys-prefix
 
@@ -88,7 +91,7 @@ RUN jupyter nbextension enable --sys-prefix --py widgetsnbextension
 RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager 
 RUN jupyter labextension install @jupyterlab/hub-extension 
 RUN jupyter labextension install @pyviz/jupyterlab_pyviz
-RUN jupyter labextension install dask-labextension
+#RUN jupyter labextension install dask-labextension
 
 RUN jupyter labextension list
 
