@@ -43,8 +43,8 @@ RUN conda install -n base -c conda-forge widgetsnbextension
 RUN conda install -n base -c conda-forge ipywidgets
 RUN conda install -n base -c conda-forge dask_labextension
 
-RUN /opt/conda/bin/pip install nbserverproxy
-#RUN /opt/conda/bin/pip install dask_labextension
+#RUN /opt/conda/bin/pip install nbserverproxy
+RUN /opt/conda/bin/pip install jupyter-server-proxy
 
 RUN conda  install nb_conda
 RUN conda remove -n base jupytext
