@@ -29,7 +29,9 @@ RUN conda config --add channels bokeh/label/dev
 RUN conda config --add channels intake
 RUN conda config --add channels bioconda
 RUN conda config --add channels conda-forge
-#RUN conda update --yes conda
+RUN conda update --yes conda
+
+RUN conda remove --name base --all
 
 RUN conda env update  --file /tmp/environment.yml --prune
 RUN conda clean -afy 
@@ -49,12 +51,6 @@ RUN conda  install nb_conda
 RUN conda remove -n malariagen jupytext
 
 #RUN jupyter serverextension enable --py nbserverproxy --sys-prefix
-
-
-
-
-
-
 
 
 USER root
