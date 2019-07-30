@@ -7,9 +7,9 @@ RUN apt-get update \
   && rm -rf /var/lib/apt/lists/*
 
 USER $NB_USER
+
 RUN conda config --set ssl_verify no
-#COPY conda.txt /conda.txt
-#COPY pip.txt /pip.txt
+
 COPY binder/environment-pinned-linux.yml /tmp/environment-pinned-linux.yml
 RUN sed  's/malariagen/base/' /tmp/environment-pinned-linux.yml > /tmp/environment.yml
 
@@ -25,7 +25,7 @@ RUN echo "env variable IMAGETAG is ${IMAGETAG}"
 
 
 
-    # create default scientific Python environment
+# create default scientific Python environment
 
 RUN conda config --add channels pyviz/label/dev
 RUN conda config --add channels bokeh/label/dev
@@ -36,18 +36,17 @@ RUN conda update --yes conda
 RUN cat /tmp/pinned > /opt/conda/conda-meta/pinned
 
 RUN conda env update  --file /tmp/environment.yml --prune
-RUN conda clean -afy 
-#    && find /opt/conda/ -follow -type f -name '*.a' -delete \
-#    && find /opt/conda/ -follow -type f -name '*.pyc' -delete \
-#    && find /opt/conda/ -follow -type f -name '*.js.map' -delete 
-#    
+RUN conda clean -afy \
+    && find /opt/conda/ -follow -type f -name '*.a' -delete \
+    && find /opt/conda/ -follow -type f -name '*.pyc' -delete \
+    && find /opt/conda/ -follow -type f -name '*.js.map' -delete 
+    
 
 RUN conda install -n base -c conda-forge widgetsnbextension
 RUN conda install -n base -c conda-forge ipywidgets
 RUN conda install -n base -c conda-forge dask_labextension
 
-#RUN /opt/conda/bin/pip install nbserverproxy
-# https://github.com/dask/dask-labextension/issues/51    nbserverproxy has been replaced with jupyter-server-proxy
+# https://github.com/dask/dask-labextension/issues/51    nbserverproxy has been replaced by jupyter-server-proxy
 
 RUN /opt/conda/bin/pip install jupyter-server-proxy
 
@@ -81,12 +80,6 @@ RUN echo "$NB_USER ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/notebook
 RUN sed -ri "s#Defaults\s+secure_path=\"([^\"]+)\"#Defaults secure_path=\"\1:$CONDA_DIR/bin\"#" /etc/sudoers
 USER $NB_USER
 
-#RUN echo "conda activate base" >> /pre-home/.bashrc
-#ENV PATH /opt/conda/envs/malariagen/bin:$PATH
-#USER root
-#USER $NB_USER
-#
-#RUN /bin/bash -c "source activate malariagen"
 RUN conda env list
 
 RUN jupyter nbextension enable --sys-prefix --py widgetsnbextension
@@ -94,7 +87,6 @@ RUN jupyter nbextension enable --sys-prefix --py widgetsnbextension
 RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager 
 RUN jupyter labextension install @jupyterlab/hub-extension 
 RUN jupyter labextension install @pyviz/jupyterlab_pyviz
-#RUN jupyter labextension install dask-labextension
 
 RUN jupyter labextension list
 
