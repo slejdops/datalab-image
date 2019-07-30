@@ -12,6 +12,9 @@ RUN conda config --set ssl_verify no
 #COPY pip.txt /pip.txt
 COPY binder/environment-pinned-linux.yml /tmp/environment-pinned-linux.yml
 RUN sed  's/malariagen/base/' /tmp/environment-pinned-linux.yml > /tmp/environment.yml
+
+COPY pinned /tmp/pinned
+
 ARG tag
 RUN echo "image tag is $tag"
 ENV IMAGETAG=$tag
@@ -30,7 +33,7 @@ RUN conda config --add channels intake
 RUN conda config --add channels bioconda
 RUN conda config --add channels conda-forge
 RUN conda update --yes conda
-
+RUN cat /tmp/pinned > /opt/conda/conda-meta/pinned
 
 RUN conda env update  --file /tmp/environment.yml --prune
 RUN conda clean -afy 
