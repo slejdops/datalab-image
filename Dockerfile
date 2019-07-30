@@ -32,7 +32,7 @@ RUN conda config --add channels bokeh/label/dev
 RUN conda config --add channels intake
 RUN conda config --add channels bioconda
 RUN conda config --add channels conda-forge
-RUN conda update --yes conda
+#RUN conda update --yes conda
 RUN cat /tmp/pinned > /opt/conda/conda-meta/pinned
 
 RUN conda env update  --file /tmp/environment.yml --prune
