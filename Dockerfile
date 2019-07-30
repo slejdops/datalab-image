@@ -10,8 +10,8 @@ USER $NB_USER
 RUN conda config --set ssl_verify no
 #COPY conda.txt /conda.txt
 #COPY pip.txt /pip.txt
-COPY binder/environment-pinned-linux.yml /tmp/environment.yml
-RUN sed -i 's/malariagen/base/' /tmp/environment.yml
+COPY binder/environment-pinned-linux.yml /tmp/environment-pinned-linux.yml
+RUN sed  's/malariagen/base/' /tmp/environment-pinned-linux.yml > /tmp/environment.yml
 ARG tag
 RUN echo "image tag is $tag"
 ENV IMAGETAG=$tag
