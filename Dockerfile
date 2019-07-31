@@ -45,6 +45,7 @@ RUN conda clean -afy \
 RUN conda install -n base -c conda-forge widgetsnbextension
 RUN conda install -n base -c conda-forge ipywidgets
 RUN conda install -n base -c conda-forge dask_labextension
+RUN conda install -n base -c conda-forge dask-jobqueue
 
 # https://github.com/dask/dask-labextension/issues/51    nbserverproxy has been replaced by jupyter-server-proxy
 
