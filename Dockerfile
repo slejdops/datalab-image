@@ -87,6 +87,7 @@ RUN jupyter nbextension enable --sys-prefix --py widgetsnbextension
 RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager 
 RUN jupyter labextension install @jupyterlab/hub-extension 
 RUN jupyter labextension install @pyviz/jupyterlab_pyviz
+RUN jupyter labextension install dask-labextension
 
 RUN jupyter labextension list
 
