@@ -3,7 +3,8 @@ FROM amd64/ubuntu:xenial
 
 USER root
 RUN apt-get update \
-  && apt-get install -yq --no-install-recommends dnsutils libfuse-dev nano fuse vim git build-essential  openssh-client nfs-common rpcbind inetutils-ping \
+  && apt-get install -yq --no-install-recommends dnsutils libfuse-dev nano fuse vim git \
+  build-essential  openssh-client nfs-common rpcbind inetutils-ping wget \
   nfs-kernel-server runit inotify-tools \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/*
