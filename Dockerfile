@@ -1,4 +1,5 @@
-FROM jupyter/base-notebook
+FROM amd64/ubuntu:xenial
+#FROM jupyter/base-notebook
 
 USER root
 RUN apt-get update \
@@ -8,6 +9,14 @@ RUN apt-get update \
   && rm -rf /var/lib/apt/lists/*
 
 USER $NB_USER
+
+
+RUN cd /tmp && \
+    wget --quiet https://repo.continuum.io/miniconda/Miniconda3-${MINICONDA_VERSION}-Linux-x86_64.sh && \
+    echo "718259965f234088d785cad1fbd7de03 *Miniconda3-${MINICONDA_VERSION}-Linux-x86_64.sh" | md5sum -c - && \
+    /bin/bash Miniconda3-${MINICONDA_VERSION}-Linux-x86_64.sh -f -b -p $CONDA_DIR && \
+    rm Miniconda3-${MINICONDA_VERSION}-Linux-x86_64.sh && \
+    echo "conda ${CONDA_VERSION}" >> $CONDA_DIR/conda-meta/pinned
 
 RUN conda config --set ssl_verify no
 
