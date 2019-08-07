@@ -57,7 +57,6 @@ RUN conda install -n base -c conda-forge dask-jobqueue
 RUN /opt/conda/bin/pip install jupyter-server-proxy
 
 RUN conda  install nb_conda
-RUN conda remove -n base jupytext
 RUN conda remove -n base nbserverproxy
 
 #RUN jupyter serverextension enable --py nbserverproxy --sys-prefix
