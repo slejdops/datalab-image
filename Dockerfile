@@ -50,7 +50,7 @@ RUN conda clean -afy \
 RUN conda install -n base -c conda-forge widgetsnbextension
 RUN conda install -n base -c conda-forge ipywidgets
 RUN conda install -n base -c conda-forge dask_labextension
-RUN conda install -n base -c conda-forge dask-jobqueue
+RUN conda install -n base -c conda-forge gcsfs
 
 # https://github.com/dask/dask-labextension/issues/51    nbserverproxy has been replaced by jupyter-server-proxy
 
@@ -67,6 +67,9 @@ COPY prepare.sh /usr/bin/prepare.sh
 RUN chmod +x /usr/bin/prepare.sh
 RUN mkdir /home/$NB_USER/examples && chown -R $NB_USER /home/$NB_USER/examples
 RUN mkdir /pre-home && mkdir /pre-home/examples 
+
+RUN mkdir /home/$NB_USER/nfs
+RUN chown -R $NB_USER /home/$NB_USER/nfs
 
 COPY conda_init /pre-home/.bashrc
 RUN chown -R $NB_USER /pre-home
