@@ -44,6 +44,8 @@ echo "nameserver 172.18.255.1" > /tmp/resolv.conf
 cat /etc/resolv.conf >> /tmp/resolv.conf
 sudo cp /tmp/resolv.conf /etc/resolv.conf
 
+mkdir /home/jovyan/nfs
+
 sudo mount 10.233.41.41:/ /home/jovyan/nfs
 
 else
