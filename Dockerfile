@@ -71,7 +71,7 @@ RUN mkdir /home/$NB_USER/nfs
 RUN chown -R $NB_USER /home/$NB_USER/nfs
 
 COPY conda_init /pre-home/.bashrc
-COPY /pre-home/.bashrc /pre-home/.profile
+COPY conda_init /pre-home/.profile
 RUN chown -R $NB_USER /pre-home
 COPY examples/ /pre-home/examples/
 
