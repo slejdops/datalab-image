@@ -11,9 +11,7 @@ jobs:
           name: Setup VirtualEnv
           command: |
             echo 'export GITHASH=$(echo ${CIRCLE_SHA1} | cut -c -7)'
-            #echo 'export TAG=${GITHASH}' >> $BASH_ENV
             echo 'export TAG=dev-0.1.${CIRCLE_BUILD_NUM}' >> $BASH_ENV
-            #echo 'export IMAGE_NAME=python-circleci-docker' >> $BASH_ENV
       - setup_remote_docker:
           docker_layer_caching: true
       - run:
@@ -28,10 +26,8 @@ jobs:
             GITHASH=$(echo ${CIRCLE_SHA1} | cut -c -7)
             echo ${GITHASH}
             docker build --build-arg tag=$GITHASH  -t malariagen/datalab-dev:$GITHASH .
-            #docker build --build-arg tag=$TAG  -t malariagen/datalab-dev:$TAG .
             echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
             docker push malariagen/datalab-dev:$GITHASH
-            #docker push malariagen/datalab-dev:$TAG
 workflows:
       version: 2
       build-master:
