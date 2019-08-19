@@ -19,15 +19,15 @@ jobs:
           command: |
             git submodule init
             git submodule update 
-          
+      
       - run:
           name: Build and push Docker image
           command: |
             GITHASH=$(echo ${CIRCLE_SHA1} | cut -c -7)
             echo ${GITHASH}
-            docker build --build-arg tag=$GITHASH  -t malariagen/datalab-dev:$GITHASH .
+            docker build --build-arg tag=$GITHASH  -t malariagen/datalab:$GITHASH .
             echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
-            docker push malariagen/datalab-dev:$GITHASH
+            docker push malariagen/datalab:$GITHASH
 workflows:
       version: 2
       build-master:
