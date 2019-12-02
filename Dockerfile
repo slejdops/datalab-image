@@ -18,7 +18,7 @@ RUN conda config --set ssl_verify no
 COPY env-linux.yaml /tmp/env-linux.yaml
 
 COPY binder/environment-pinned-linux.yml /tmp/environment-pinned-linux.yml
-RUN sed  's/malariagen/base/' /tmp/environment-pinned-linux.yml > /tmp/environment.yml
+RUN sed  's/malariagen.*/base/' /tmp/environment-pinned-linux.yml > /tmp/environment.yml
 #RUN sed  's/malariagen/base/' /tmp/env-linux.yaml > /tmp/environment.yml
 
 COPY pinned /tmp/pinned
